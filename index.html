@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Postcard Printer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f3f3f3;
+      text-align: center;
+      margin: 0;
+      padding: 2rem;
+    }
+    input {
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      width: 300px;
+      border: 2px solid #a66bbd;
+      border-radius: 4px;
+    }
+    #postcard-container {
+      position: relative;
+      display: inline-block;
+    }
+    #name-overlay {
+      position: absolute;
+      top: 55%; /* 调整这里的值定位名字 */
+      left: 30%; /* 调整这里的值定位名字 */
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      font-weight: bold;
+      color: #000;
+      font-family: Georgia, serif;
+    }
+    #postcard {
+      width: 700px;
+      height: auto;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #print-area, #print-area * {
+        visibility: visible;
+      }
+      #print-area {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>Enter your name below</h2>
+  <input type="text" id="nameInput" placeholder="Your name..." oninput="updateName()" />
+  
+  <div id="print-area">
+    <div id="postcard-container">
+      <img src="postcard.jpg" alt="Postcard" id="postcard" />
+      <div id="name-overlay"></div>
+    </div>
+  </div>
+
+  <br><br>
+  <button onclick="window.print()">Print</button>
+
+  <script>
+    function updateName() {
+      const name = document.getElementById("nameInput").value;
+      document.getElementById("name-overlay").textContent = name;
+    }
+  </script>
+</body>
+</html>
