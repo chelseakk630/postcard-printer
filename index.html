@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Postcard Printer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #f3f3f3;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .preview {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/2;
+      background-image: url('postcard.jpg');
+      background-size: cover;
+      background-position: center;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+
+    .name-tag {
+      position: absolute;
+      top: 6rem;
+      left: 6rem;
+      font-size: 1.8rem;
+      color: #000;
+      font-weight: bold;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+    }
+
+    input {
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      width: 80%;
+      max-width: 300px;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Enter your name below</h1>
+    <input id="nameInput" placeholder="Your name..." />
+    <div class="preview" id="preview">
+      <div class="name-tag" id="nameTag">Dear</div>
+    </div>
+    <button onclick="printPostcard()">Print</button>
+  </div>
+
+  <script>
+    const input = document.getElementById('nameInput');
+    const tag = document.getElementById('nameTag');
+
+    input.addEventListener('input', function () {
+      tag.textContent = this.value ? `Dear ${this.value}` : 'Dear';
+    });
+
+    function printPostcard() {
+      window.print();
+    }
+  </script>
+</body>
+</html>
